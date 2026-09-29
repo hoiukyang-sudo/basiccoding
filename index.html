@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>프로그래밍 기초학력 진단 문항 (검토용)</title>
+<style>
+ :root{--algo:#2563eb;--code:#0d9488;--ct:#7c3aed;--ink:#1f2937;--mut:#6b7280;--line:#e5e7eb;}
+ *{box-sizing:border-box}
+ body{font-family:'Pretendard',-apple-system,BlinkMacSystemFont,'Malgun Gothic','Apple SD Gothic Neo',sans-serif;
+   color:var(--ink);background:#f3f4f6;margin:0;padding:0 0 60px;line-height:1.6;}
+ .wrap{max-width:820px;margin:0 auto;padding:0 20px;}
+ header.top{background:#111827;color:#fff;padding:28px 0;margin-bottom:22px;}
+ header.top h1{margin:0;font-size:22px;}
+ header.top p{margin:6px 0 0;color:#cbd5e1;font-size:13px;}
+ .toolbar{position:sticky;top:0;background:#ffffffee;backdrop-filter:blur(4px);border-bottom:1px solid var(--line);
+   padding:10px 0;margin-bottom:18px;z-index:5;}
+ .toolbar .wrap{display:flex;gap:10px;align-items:center;justify-content:flex-end;}
+ button{font:inherit;font-size:13px;padding:7px 14px;border:1px solid var(--line);background:#fff;border-radius:8px;cursor:pointer;}
+ button:hover{background:#f9fafb;}
+ .summary{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:12px;}
+ .sum-box{flex:1;min-width:240px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px;}
+ .sum-box h3{margin:0 0 8px;font-size:13px;color:var(--mut);font-weight:600;}
+ .sum-box table{width:100%;border-collapse:collapse;text-align:center;}
+ .sum-box th{font-size:12px;color:var(--mut);font-weight:600;padding:4px;border-bottom:1px solid var(--line);}
+ .sum-box td{font-size:18px;font-weight:700;padding:8px 4px;}
+ .levels-legend{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 16px;font-size:12.5px;color:var(--mut);margin-bottom:26px;}
+ .card{background:#fff;border:1px solid var(--line);border-left:5px solid var(--line);border-radius:12px;
+   padding:18px 20px;margin-bottom:16px;box-shadow:0 1px 2px rgba(0,0,0,.03);}
+ .card.d-algo{border-left-color:var(--algo);}
+ .card.d-code{border-left-color:var(--code);}
+ .card.d-ct{border-left-color:var(--ct);}
+ .card-head{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px;}
+ .num{width:30px;height:30px;border-radius:8px;background:#111827;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;}
+ .badge{font-size:11.5px;padding:3px 9px;border-radius:20px;font-weight:600;}
+ .badge.dom{background:#eef2ff;color:#374151;}
+ .d-algo .badge.dom{background:#eff6ff;color:var(--algo);}
+ .d-code .badge.dom{background:#f0fdfa;color:var(--code);}
+ .d-ct .badge.dom{background:#f5f3ff;color:var(--ct);}
+ .badge.lv{background:#f3f4f6;color:#374151;}
+ .badge.lv4{background:#fef3c7;color:#92400e;}
+ .badge.lv3{background:#e0e7ff;color:#3730a3;}
+ .badge.std{background:#f9fafb;color:var(--mut);border:1px solid var(--line);font-weight:500;}
+ .construct{font-size:13px;color:var(--mut);margin-bottom:10px;}
+ .stem{background:#0f172a;color:#e2e8f0;font-family:'SF Mono','Consolas','D2Coding',monospace;font-size:13.5px;
+   line-height:1.7;padding:14px 16px;border-radius:10px;white-space:pre-wrap;margin:0 0 14px;overflow-x:auto;}
+ .choices{list-style:none;padding:0;margin:0 0 14px;display:flex;flex-direction:column;gap:6px;}
+ .choice{padding:8px 12px;border:1px solid var(--line);border-radius:8px;font-size:14px;background:#fff;}
+ .choice.correct{border-color:#16a34a;background:#f0fdf4;font-weight:600;position:relative;}
+ .ck{color:#16a34a;font-weight:800;margin-left:8px;}
+ .analysis{border-top:1px dashed var(--line);padding-top:12px;}
+ .an-title{font-size:12.5px;font-weight:700;color:#374151;margin-bottom:8px;}
+ .a19{font-weight:500;color:var(--mut);}
+ .an-ans{font-size:13px;margin-bottom:8px;}
+ .an-row{display:flex;gap:8px;margin-bottom:7px;}
+ .an-sym{flex:0 0 auto;font-weight:700;color:#b91c1c;}
+ .an-body{font-size:12.5px;}
+ .an-mis{color:#374151;}
+ .an-rem{color:var(--mut);}
+ body.hide-answers .analysis{display:none;}
+ body.hide-answers .choice.correct{border-color:var(--line);background:#fff;font-weight:400;}
+ body.hide-answers .ck{display:none;}
+ @media print{
+   body{background:#fff;} .toolbar{display:none;} header.top{background:#fff;color:#000;border-bottom:2px solid #000;}
+   header.top p{color:#333;} .card{break-inside:avoid;box-shadow:none;} .stem{background:#f3f4f6;color:#111;border:1px solid #ccc;}
+ }
+</style></head>
+<body>
+<header class="top"><div class="wrap">
+  <h1>프로그래밍 기초학력 진단 문항 <span style="font-weight:400;font-size:15px;">(최종 확정본 · 검토용)</span></h1>
+  <p>총 23문항 · 2022 개정 정보과 교육과정(중학교, 알고리즘과 프로그래밍) · 의사코드 기반 · 대상: 중·고등학생</p>
+</div></header>
+<div class="toolbar"><div class="wrap">
+  <button onclick="document.body.classList.toggle('hide-answers')">정답·해설 숨기기 / 보이기</button>
+  <button onclick="window.print()">인쇄 / PDF 저장</button>
+</div></div>
+<div class="wrap">
+  
+<div class="summary">
+  <div class="sum-box">
+    <h3>영역별 문항 수</h3>
+    <table><tr><th>알고리즘 이해</th><th>코드 표현·실행</th><th>CT·문제해결</th><th>합계</th></tr>
+    <tr><td>8</td><td>8</td><td>7</td><td>23</td></tr></table>
+  </div>
+  <div class="sum-box">
+    <h3>수준별 문항 수</h3>
+    <table><tr><th>수준1</th><th>수준2</th><th>수준3</th><th>수준4</th></tr>
+    <tr><td>4</td><td>9</td><td>8</td><td>2</td></tr></table>
+  </div>
+</div>
+<div class="levels-legend">
+  <b>성취수준</b>
+  · 1 기초학력 미도달
+  · 2 기초학력 도달(최소 성취기준)
+  · 3 보통
+  · 4 우수
+</div>
+  
+<article class="card d-algo">
+  <div class="card-head">
+    <span class="num">1</span>
+    <span class="badge dom">알고리즘 이해</span>
+    <span class="badge lv lv1">수준 1</span>
+    <span class="badge std">9정03-06</span>
+  </div>
+  <div class="construct">변수 저장과 순차적 연산의 결과를 예측할 수 있는가 (순차 실행 이해)</div>
+  <pre class="stem">a ← 6
+b ← 3
+print a + b</pre>
+  <ul class="choices">
+    <li class="choice">① 6</li>
+<li class="choice">② 3</li>
+<li class="choice correct">③ 9<span class="ck">✓</span></li>
+<li class="choice">④ 63</li>
+  </ul>
+  <div class="analysis">
+    <div class="an-title">정답 · 오답 분석 <span class="a19">(A19 오개념→보정 연계)</span></div>
+    <div class="an-ans">정답 <b>③</b></div>
+<div class="an-row"><span class="an-sym">①</span><div class="an-body"><div class="an-mis">오개념: a만 출력하거나 b를 무시(하나의 변수만 반영)</div><div class="an-rem">보정(SEQ): 순차 실행·대입: 변수에 값이 순서대로 저장·갱신되는 과정을 한 줄씩 손으로 추적(trace)하는 연습</div></div></div>
+<div class="an-row"><span class="an-sym">②</span><div class="an-body"><div class="an-mis">오개념: b만 출력하거나 a를 무시</div><div class="an-rem">보정(SEQ): 순차 실행·대입: 변수에 값이 순서대로 저장·갱신되는 과정을 한 줄씩 손으로 추적(trace)하는 연습</div></div></div>
+<div class="an-row"><span class="an-sym">④</span><div class="an-body"><div class="an-mis">오개념: +를 연산이 아닌 이어붙이기(문자 연결)로 오인</div><div class="an-rem">보정(SEQ): 순차 실행·대입: 변수에 값이 순서대로 저장·갱신되는 과정을 한 줄씩 손으로 추적(trace)하는 연습</div></div></div>
+  </div>
+</article>
+<article class="card d-algo">
+  <div class="card-head">
+    <span class="num">2</span>
+    <span class="badge dom">알고리즘 이해</span>
+    <span class="badge lv lv1">수준 1</span>
+    <span class="badge std">9정03-06</span>
+  </div>
+  <div class="construct">조건문의 참·거짓을 판단하고 그에 따른 분기 결과를 파악할 수 있는가</div>
+  <pre class="stem">x가 2일 때 출력되는 것은?
+if x &gt; 5:
+    print &quot;big&quot;
+else:
+    print &quot;small&quot;</pre>
+  <ul class="choices">
+    <li class="choice">① big</li>
+<li class="choice">② nothing</li>
+<li class="choice">③ 2</li>
+<li class="choice correct">④ small<span class="ck">✓</span></li>
+  </ul>
+  <div class="analysis">
+    <div class="an-title">정답 · 오답 분석 <span class="a19">(A19 오개념→보정 연계)</span></div>
+    <div class="an-ans">정답 <b>④</b></div>
+<div class="an-row"><span class="an-sym">①</span><div class="an-body"><div class="an-mis">오개념: 조건(2&gt;5)을 참으로 잘못 판단</div><div class="an-rem">보정(COND_BASIC): 조건 판단: 조건식의 참/거짓과 그에 따른 분기(then/else) 실행을 표로 정리</div></div></div>
+<div class="an-row"><span class="an-sym">②</span><div class="an-body"><div class="an-mis">오개념: else 분기가 실행됨을 놓쳐 아무것도 출력 안 된다고 오인</div><div class="an-rem">보정(COND_BASIC): 조건 판단: 조건식의 참/거짓과 그에 따른 분기(then/else) 실행을 표로 정리</div></div></div>
+<div class="an-row"><span class="an-sym">③</span><div class="an-body"><div class="an-mis">오개념: 조건값 x 자체가 출력된다고 오인</div><div class="an-rem">보정(COND_BASIC): 조건 판단: 조건식의 참/거짓과 그에 따른 분기(then/else) 실행을 표로 정리</div></div></div>
+  </div>
+</article>
+<article class="card d-algo">
+  <div class="card-head">
+    <span class="num">3</span>
+    <span class="badge dom">알고리즘 이해</span>
+    <span class="badge lv lv1">수준 1</span>
+    <span class="badge std">9정03-06</span>
+  </div>
+  <div class="construct">반복 구조가 몇 번 실행되는지 파악할 수 있는가</div>
+  <pre class="stem">다음을 실행하면 &quot;hi&quot;는 몇 번 출력되는가?
+repeat 3 times:
+    print &quot;hi&quot;</pre>
+  <ul class="choices">
+    <li class="choice correct">① 3번<span class="ck">✓</span></li>
+<li class="choice">② 1번</li>
+<li class="choice">③ 4번</li>
+<li class="choice">④ 2번</li>
+  </ul>
+  <div class="analysis">
+    <div class="an-title">정답 · 오답 분석 <span class="a19">(A19 오개념→보정 연계)</span></div>
+    <div class="an-ans">정답 <b>①</b></div>
+<div class="an-row"><span class="an-sym">②</span><div class="an-body"><div class="an-mis">오개념: 반복을 1회만 실행한다고 오인</div><div class="an-rem">보정(LOOP_COUNT): 반복 횟수: 반복 구조가 실제 몇 번 실행되는지 카운터를 세며 확인</div></div></div>
+<div class="an-row"><span class="an-sym">③</span><div class="an-body"><div class="an-mis">오개념: 반복 경계(off-by-one)로 1회 더 센다</div><div class="an-rem">보정(LOOP_COUNT): 반복 횟수: 반복 구조가 실제 몇 번 실행되는지 카운터를 세며 확인</div></div></div>
+<div class="an-row"><span class="an-sym">④</span><div class="an-body"><div class="an-mis">오개념: 반복 횟수를 임의로 축소</div><div class="an-rem">보정(LOOP_COUNT): 반복 횟수: 반복 구조가 실제 몇 번 실행되는지 카운터를 세며 확인</div></div></div>
+  </div>
+</article>
+<article class="card d-algo">
+  <div class="card-head">
+    <span class="num">4</span>
+    <span class="badge dom">알고리즘 이해</span>
+    <span class="badge lv lv2">수준 2</span>
+    <span class="badge std">9정03-06</span>
+  </div>
+  <div class="construct">반복 과정에서 변수에 값이 누적되는 흐름을 추적할 수 있는가 (합 누적)</div>
+  <pre class="stem">최종 출력값은?
+sum ← 0
+for i from 1 to 2:
+    sum ← sum + i
+print sum</pre>
+  <ul class="choices">
+    <li class="choice">① 2</li>
+<li class="choice correct">② 3<span class="ck">✓</span></li>
+<li class="choice">③ 5</li>
+<li class="choice">④ 4</li>
+  </ul>
+  <div class="analysis">
+    <div class="an-title">정답 · 오답 분석 <span class="a19">(A19 오개념→보정 연계)</span></div>
+    <div class="an-ans">정답 <b>②</b></div>
+<div class="an-row"><span class="an-sym">①</span><div class="an-body"><div class="an-mis">오개념: 마지막 i값만 반영하고 누적을 놓침</div><div class="an-rem">보정(LOOP_ACCUM): 반복 누적: 합/곱이 매 반복마다 어떻게 갱신되는지 누적표(trace table) 작성</div></div></div>
+<div class="an-row"><span class="an-sym">③</span><div class="an-body"><div class="an-mis">오개념: 범위를 1~3으로 오인해 과잉 누적</div><div class="an-rem">보정(LOOP_COUNT): 반복 횟수: 반복 구조가 실제 몇 번 실행되는지 카운터를 세며 확인</div></div></div>
+<div class="an-row"><span class="an-sym">④</span><div class="an-body"><div class="an-mis">오개념: 초기값이나 반복 경계 오해로 오계산</div><div class="an-rem">보정(LOOP_ACCUM): 반복 누적: 합/곱이 매 반복마다 어떻게 갱신되는지 누적표(trace table) 작성</div></div></div>
+  </div>
+</article>
+<article class="card d-algo">
+  <div class="card-head">
+    <span class="num">5</span>
+    <span class="badge dom">알고리즘 이해</span>
+    <span class="badge lv lv2">수준 2</span>
+    <span class="badge std">9정03-06</span>
+  </div>
+  <div class="construct">조건 판단 결과에 따라 서로 다른 연산을 수행하는 흐름을 이해하는가</div>
+  <pre class="stem">a=9, b=4일 때 출력값은?
+if a &gt; b:
+    print a - b
+else:
+    print b - a</pre>
+  <ul class="choices">
+    <li class="choice">① -5</li>
+<li class="choice">② 4</li>
+<li class="choice correct">③ 5<span class="ck">✓</span></li>
+<li class="choice">④ 9</li>
+  </ul>
+  <div class="analysis">
+    <div class="an-title">정답 · 오답 분석 <span class="a19">(A19 오개념→보정 연계)</span></div>
+    <div class="an-ans">정답 <b>③</b></div>
+<div class="an-row"><span class="an-sym">①</span><div class="an-body"><div class="an-mis">오개념: 조건을 거짓으로 잘못 판단해 b-a 실행(부호 오류)</div><div class="an-rem">보정(COND_BASIC): 조건 판단: 조건식의 참/거짓과 그에 따른 분기(then/else) 실행을 표로 정리</div></div></div>
+<div class="an-row"><span class="an-sym">②</span><div class="an-body"><div class="an-mis">오개념: b값을 그대로 출력</div><div class="an-rem">보정(COND_BASIC): 조건 판단: 조건식의 참/거짓과 그에 따른 분기(then/else) 실행을 표로 정리</div></div></div>
+<div class="an-row"><span class="an-sym">④</span><div class="an-body"><div class="an-mis">오개념: a값을 그대로 출력(연산 미수행)</div><div class="an-rem">보정(SEQ): 순차 실행·대입: 변수에 값이 순서대로 저장·갱신되는 과정을 한 줄씩 손으로 추적(trace)하는 연습</div></div></div>
+  </div>
+</article>
+<article class="card d-algo">
+  <div class="card-head">
+    <span class="num">6</span>
+    <span class="badge dom">알고리즘 이해</span>
+    <span class="badge lv lv3">수준 3</span>
+    <span class="badge std">9정03-06</span>
+  </div>
+  <div class="construct">경계값(&gt;=)에서의 조건 판단을 정확히 하는가 (경계 조건 오개념 판별)</div>
+  <pre class="stem">score가 정확히 60일 때 출력은?
+if score &gt;= 60:
+    print &quot;pass&quot;
+else:
+    print &quot;fail&quot;</pre>
+  <ul class="choices">
+    <li class="choice">① fail</li>
+<li class="choice">② 60</li>
+<li class="choice">③ error</li>
+<li class="choice correct">④ pass<span class="ck">✓</span></li>
+  </ul>
+  <div class="analysis">
+    <div class="an-title">정답 · 오답 분석 <span class="a19">(A19 오개념→보정 연계)</span></div>
+    <div class="an-ans">정답 <b>④</b></div>
+<div class="an-row"><span class="an-sym">①</span><div class="an-body"><div class="an-mis">오개념: &gt;= 를 &gt; 로 오해해 경계값(60)을 탈락으로 판단</div><div class="an-rem">보정(COND_BOUNDARY): 경계값 구분: &gt;, &gt;=, &lt;, &lt;= 의 차이를 경계값(=인 경우) 중심으로 비교하는 연습</div></div></div>
+<div class="an-row"><span class="an-sym">②</span><div class="an-body"><div class="an-mis">오개념: 조건값 자체가 출력된다고 오인</div><div class="an-rem">보정(COND_BASIC): 조건 판단: 조건식의 참/거짓과 그에 따른 분기(then/else) 실행을 표로 정리</div></div></div>
+<div class="an-row"><span class="an-sym">③</span><div class="an-body"><div class="an-mis">오개념: 경계값에서 오류가 난다고 오인</div><div class="an-rem">보정(COND_BOUNDARY): 경계값 구분: &gt;, &gt;=, &lt;, &lt;= 의 차이를 경계값(=인 경우) 중심으로 비교하는 연습</div></div></div>
+  </div>
+</article>
+<article class="card d-code">
+  <div class="card-head">
+    <span class="num">7</span>
+    <span class="badge dom">코드 표현·실행</span>
+    <span class="badge lv lv3">수준 3</span>
+    <span class="badge std">9정03-06</span>
+  </div>
+  <div class="construct">곱을 누적하는 반복을 코드로 완성할 수 있는가 (곱 누적 표현)</div>
+  <pre class="stem">1부터 3까지의 수를 모두 곱한 값을 구하는 프로그램이다. 빈칸에 알맞은 것은?
+result ← 1
+for i from 1 to 3:
+    result ← (   )
+print result</pre>
+  <ul class="choices">
+    <li class="choice correct">① result * i<span class="ck">✓</span></li>
+<li class="choice">② result + i</li>
+<li class="choice">③ i * i</li>
+<li class="choice">④ result * 3</li>
+  </ul>
+  <div class="analysis">
+    <div class="an-title">정답 · 오답 분석 <span class="a19">(A19 오개념→보정 연계)</span></div>
+    <div class="an-ans">정답 <b>①</b></div>
+<div class="an-row"><span class="an-sym">②</span><div class="an-body"><div class="an-mis">오개념: 곱 누적을 합 누적으로 혼동(*를 +로)</div><div class="an-rem">보정(LOOP_ACCUM): 반복 누적: 합/곱이 매 반복마다 어떻게 갱신되는지 누적표(trace table) 작성</div></div></div>
+<div class="an-row"><span class="an-sym">③</span><div class="an-body"><div class="an-mis">오개념: 이전 결과(result)를 사용하지 않고 i만 사용(자기참조 누적 미이해)</div><div class="an-rem">보정(VAR_ASSIGN): 자기참조 대입(x←x+1): &#x27;오른쪽을 먼저 계산해 왼쪽에 다시 저장&#x27;하는 대입의 의미를 값 상자 비유로 지도</div></div></div>
+<div class="an-row"><span class="an-sym">④</span><div class="an-body"><div class="an-mis">오개념: 반복 변수 i 대신 상수 3을 곱함(변수 미사용)</div><div class="an-rem">보정(LOOP_ACCUM): 반복 누적: 합/곱이 매 반복마다 어떻게 갱신되는지 누적표(trace table) 작성</div></div></div>
+  </div>
+</article>
+<article class="card d-code">
+  <div class="card-head">
+    <span class="num">8</span>
+    <span class="badge dom">코드 표현·실행</span>
+    <span class="badge lv lv1">수준 1</span>
+    <span class="badge std">9정03-06</span>
+  </div>
+  <div class="construct">목표 동작(값 증가)을 자기참조 대입문으로 표현할 수 있는가 (누적 대입 x←x+1)</div>
+  <pre class="stem">현재 5인 count를 1 증가시켜 6으로 만들려고 한다. 빈칸에 알맞은 것은?
+count ← 5
+count ← (   )
+print count</pre>
+  <ul class="choices">
+    <li class="choice correct">① count + 1<span class="ck">✓</span></li>
+<li class="choice">② count</li>
+<li class="choice">③ 1</li>
+<li class="choice">④ 6 - count</li>
+  </ul>
+  <div class="analysis">
+    <div class="an-title">정답 · 오답 분석 <span class="a19">(A19 오개념→보정 연계)</span></div>
+    <div class="an-ans">정답 <b>①</b></div>
+<div class="an-row"><span class="an-sym">②</span><div class="an-body"><div class="an-mis">오개념: 변화 없이 그대로 대입</div><div class="an-rem">보정(VAR_ASSIGN): 자기참조 대입(x←x+1): &#x27;오른쪽을 먼저 계산해 왼쪽에 다시 저장&#x27;하는 대입의 의미를 값 상자 비유로 지도</div></div></div>
+<div class="an-row"><span class="an-sym">③</span><div class="an-body"><div class="an-mis">오개념: 이전 값(count)을 무시하고 상수를 대입(누적 대입 오개념)</div><div class="an-rem">보정(VAR_ASSIGN): 자기참조 대입(x←x+1): &#x27;오른쪽을 먼저 계산해 왼쪽에 다시 저장&#x27;하는 대입의 의미를 값 상자 비유로 지도</div></div></div>
+<div class="an-row"><span class="an-sym">④</span><div class="an-body"><div class="an-mis">오개념: 결과값을 역산하려는 접근(자기참조 의미 미이해)</div><div class="an-rem">보정(VAR_ASSIGN): 자기참조 대입(x←x+1): &#x27;오른쪽을 먼저 계산해 왼쪽에 다시 저장&#x27;하는 대입의 의미를 값 상자 비유로 지도</div></div></div>
+  </div>
+</article>
+<article class="card d-code">
+  <div class="card-head">
+    <span class="num">9</span>
+    <span class="badge dom">코드 표현·실행</span>
+    <span class="badge lv lv2">수준 2</span>
+    <span class="badge std">9정03-06</span>
+  </div>
+  <div class="construct">임시 변수를 이용해 두 값을 교환하는 절차를 이해하는가</div>
+  <pre class="stem">a와 b의 값을 서로 바꾸려 한다. 빈칸에 알맞은 것은?
+temp ← a
+a ← b
+b ← (   )</pre>
+  <ul class="choices">
+    <li class="choice">① a</li>
+<li class="choice">② b</li>
+<li class="choice correct">③ temp<span class="ck">✓</span></li>
+<li class="choice">④ 0</li>
+  </ul>
+  <div class="analysis">
+    <div class="an-title">정답 · 오답 분석 <span class="a19">(A19 오개념→보정 연계)</span></div>
+    <div class="an-ans">정답 <b>③</b></div>
+<div class="an-row"><span class="an-sym">①</span><div class="an-body"><div class="an-mis">오개념: 이미 갱신된 a를 사용해 값이 덮어써짐</div><div class="an-rem">보정(SWAP): 값 교환: 임시변수를 이용한 교환 절차를 세 단계로 시각화</div></div></div>
+<div class="an-row"><span class="an-sym">②</span><div class="an-body"><div class="an-mis">오개념: b에 b를 대입(교환 무의미)</div><div class="an-rem">보정(SWAP): 값 교환: 임시변수를 이용한 교환 절차를 세 단계로 시각화</div></div></div>
+<div class="an-row"><span class="an-sym">④</span><div class="an-body"><div class="an-mis">오개념: 교환 대신 초기화로 오인</div><div class="an-rem">보정(SWAP): 값 교환: 임시변수를 이용한 교환 절차를 세 단계로 시각화</div></div></div>
+  </div>
+</article>
+<article class="card d-code">
+  <div class="card-head">
+    <span class="num">10</span>
+    <span class="badge dom">코드 표현·실행</span>
+    <span class="badge lv lv2">수준 2</span>
+    <span class="badge std">9정03-04</span>
+  </div>
+  <div class="construct">계산 문제를 해결하기 위한 절차를 논리적 순서로 배열할 수 있는가 (평균)</div>
+  <pre class="stem">두 수의 평균을 구해 출력하는 순서로 알맞게 배열한 것은?
+(가) print average
+(나) sum ← a + b
+(다) average ← sum / 2</pre>
+  <ul class="choices">
+    <li class="choice correct">① 나-다-가<span class="ck">✓</span></li>
+<li class="choice">② 다-나-가</li>
+<li class="choice">③ 가-나-다</li>
+<li class="choice">④ 나-가-다</li>
+  </ul>
+  <div class="analysis">
+    <div class="an-title">정답 · 오답 분석 <span class="a19">(A19 오개념→보정 연계)</span></div>
+    <div class="an-ans">정답 <b>①</b></div>
+<div class="an-row"><span class="an-sym">②</span><div class="an-body"><div class="an-mis">오개념: sum을 구하기 전에 average를 계산(의존성 위반)</div><div class="an-rem">보정(SEQ_ORDER): 절차 순서·의존성: 각 단계가 앞 단계의 결과에 의존함을 화살표로 표시하며 순서화</div></div></div>
+<div class="an-row"><span class="an-sym">③</span><div class="an-body"><div class="an-mis">오개념: 계산 전에 출력부터 배치</div><div class="an-rem">보정(SEQ_ORDER): 절차 순서·의존성: 각 단계가 앞 단계의 결과에 의존함을 화살표로 표시하며 순서화</div></div></div>
+<div class="an-row"><span class="an-sym">④</span><div class="an-body"><div class="an-mis">오개념: average 계산 전에 출력</div><div class="an-rem">보정(SEQ_ORDER): 절차 순서·의존성: 각 단계가 앞 단계의 결과에 의존함을 화살표로 표시하며 순서화</div></div></div>
+  </div>
+</article>
+<article class="card d-code">
+  <div class="card-head">
+    <span class="num">11</span>
+    <span class="badge dom">코드 표현·실행</span>
+    <span class="badge lv lv2">수준 2</span>
+    <span class="badge std">9정03-06</span>
+  </div>
+  <div class="construct">조건 분기 구조에서 올바른 출력 대상을 판단할 수 있는가 (최댓값 표현)</div>
+  <pre class="stem">두 수 중 큰 수를 출력하려 한다. 빈칸에 알맞은 것은?
+if a &gt; b:
+    print a
+else:
+    print (   )</pre>
+  <ul class="choices">
+    <li class="choice">① a</li>
+<li class="choice correct">② b<span class="ck">✓</span></li>
+<li class="choice">③ 0</li>
+<li class="choice">④ temp</li>
+  </ul>
+  <div class="analysis">
+    <div class="an-title">정답 · 오답 분석 <span class="a19">(A19 오개념→보정 연계)</span></div>
+    <div class="an-ans">정답 <b>②</b></div>
+<div class="an-row"><span class="an-sym">①</span><div class="an-body"><div class="an-mis">오개념: else에서도 a를 출력(분기 의미 미이해)</div><div class="an-rem">보정(COND_BASIC): 조건 판단: 조건식의 참/거짓과 그에 따른 분기(then/else) 실행을 표로 정리</div></div></div>
+<div class="an-row"><span class="an-sym">③</span><div class="an-body"><div class="an-mis">오개념: 출력 대상을 상수로 오인</div><div class="an-rem">보정(COND_BASIC): 조건 판단: 조건식의 참/거짓과 그에 따른 분기(then/else) 실행을 표로 정리</div></div></div>
+<div class="an-row"><span class="an-sym">④</span><div class="an-body"><div class="an-mis">오개념: 무관한 변수를 출력</div><div class="an-rem">보정(COND_BASIC): 조건 판단: 조건식의 참/거짓과 그에 따른 분기(then/else) 실행을 표로 정리</div></div></div>
+  </div>
+</article>
+<article class="card d-code">
+  <div class="card-head">
+    <span class="num">12</span>
+    <span class="badge dom">코드 표현·실행</span>
+    <span class="badge lv lv3">수준 3</span>
+    <span class="badge std">9정03-07</span>
+  </div>
+  <div class="construct">의도한 결과와 실제 결과의 차이로부터 코드의 논리 오류를 찾아낼 수 있는가 (디버깅)</div>
+  <pre class="stem">두 수 중 큰 수를 출력하려 한다. a=3, b=8인데 작은 수 3이 출력되었다. 어디를 고쳐야 하는가?
+a ← 3
+b ← 8
+if a &gt; b:
+    print b
+else:
+    print a</pre>
+  <ul class="choices">
+    <li class="choice correct">① print b 와 print a 의 위치를 서로 바꾼다<span class="ck">✓</span></li>
+<li class="choice">② a와 b의 값을 바꾼다</li>
+<li class="choice">③ a &gt; b 를 a &gt; 0 으로 바꾼다</li>
+<li class="choice">④ 고칠 필요 없다</li>
+  </ul>
+  <div class="analysis">
+    <div class="an-title">정답 · 오답 분석 <span class="a19">(A19 오개념→보정 연계)</span></div>
+    <div class="an-ans">정답 <b>①</b></div>
+<div class="an-row"><span class="an-sym">②</span><div class="an-body"><div class="an-mis">오개념: 출력 논리가 아니라 입력값을 바꿔 증상만 가림</div><div class="an-rem">보정(DEBUG): 디버깅: 의도한 결과와 실제 결과를 비교해 오류 위치를 좁혀가는 연습</div></div></div>
+<div class="an-row"><span class="an-sym">③</span><div class="an-body"><div class="an-mis">오개념: 조건을 무의미하게 바꿔 오류 원인 오판</div><div class="an-rem">보정(DEBUG): 디버깅: 의도한 결과와 실제 결과를 비교해 오류 위치를 좁혀가는 연습</div></div></div>
+<div class="an-row"><span class="an-sym">④</span><div class="an-body"><div class="an-mis">오개념: 오류가 없다고 판단(의도-결과 비교 실패)</div><div class="an-rem">보정(DEBUG): 디버깅: 의도한 결과와 실제 결과를 비교해 오류 위치를 좁혀가는 연습</div></div></div>
+  </div>
+</article>
+<article class="card d-code">
+  <div class="card-head">
+    <span class="num">13</span>
+    <span class="badge dom">코드 표현·실행</span>
+    <span class="badge lv lv3">수준 3</span>
+    <span class="badge std">9정03-06</span>
+  </div>
+  <div class="construct">반복이 원하는 만큼 수행되도록 종료(계속) 조건을 코드로 표현할 수 있는가 (종료 조건 표현)</div>
+  <pre class="stem">n이 0보다 큰 동안 3씩 빼기를 반복하려 한다. 빈칸에 알맞은 조건은?
+n ← 15
+count ← 0
+조건이 참인 동안 반복(   ):
+    n ← n - 3
+    count ← count + 1
+print count</pre>
+  <ul class="choices">
+    <li class="choice correct">① n &gt; 0<span class="ck">✓</span></li>
+<li class="choice">② n &lt; 0</li>
+<li class="choice">③ n = 0</li>
+<li class="choice">④ count &gt; 0</li>
+  </ul>
+  <div class="analysis">
+    <div class="an-title">정답 · 오답 분석 <span class="a19">(A19 오개념→보정 연계)</span></div>
+    <div class="an-ans">정답 <b>①</b></div>
+<div class="an-row"><span class="an-sym">②</span><div class="an-body"><div class="an-mis">오개념: 조건 방향을 반대로 표현해 반복이 한 번도 실행되지 않음</div><div class="an-rem">보정(LOOP_TERMINATE): 반복 종료 조건: while의 조건이 언제 거짓이 되는지 종료 시점을 추적</div></div></div>
+<div class="an-row"><span class="an-sym">③</span><div class="an-body"><div class="an-mis">오개념: 계속 조건을 등호(=)로 표현(초기 n=15이라 즉시 거짓)</div><div class="an-rem">보정(LOOP_TERMINATE): 반복 종료 조건: while의 조건이 언제 거짓이 되는지 종료 시점을 추적</div></div></div>
+<div class="an-row"><span class="an-sym">④</span><div class="an-body"><div class="an-mis">오개념: 종료 판단 변수를 잘못 선택(count는 0에서 시작해 즉시 거짓)</div><div class="an-rem">보정(LOOP_TERMINATE): 반복 종료 조건: while의 조건이 언제 거짓이 되는지 종료 시점을 추적</div></div></div>
+  </div>
+</article>
+<article class="card d-algo">
+  <div class="card-head">
+    <span class="num">14</span>
+    <span class="badge dom">알고리즘 이해</span>
+    <span class="badge lv lv4">수준 4</span>
+    <span class="badge std">9정03-06</span>
+  </div>
+  <div class="construct">연속된 독립 조건에서 값이 갱신되며 재판단되는 흐름을 추적할 수 있는가 (연속 조건·상태 갱신)</div>
+  <pre class="stem">x=8일 때 최종 출력값은?
+x ← 8
+if x &gt; 5:
+    x ← x - 2
+if x &gt; 5:
+    x ← x - 2
+print x</pre>
+  <ul class="choices">
+    <li class="choice correct">① 4<span class="ck">✓</span></li>
+<li class="choice">② 8</li>
+<li class="choice">③ 6</li>
+<li class="choice">④ 2</li>
+  </ul>
+  <div class="analysis">
+    <div class="an-title">정답 · 오답 분석 <span class="a19">(A19 오개념→보정 연계)</span></div>
+    <div class="an-ans">정답 <b>①</b></div>
+<div class="an-row"><span class="an-sym">②</span><div class="an-body"><div class="an-mis">오개념: 두 조건 모두 실행되지 않는다고 오인</div><div class="an-rem">보정(COND_BASIC): 조건 판단: 조건식의 참/거짓과 그에 따른 분기(then/else) 실행을 표로 정리</div></div></div>
+<div class="an-row"><span class="an-sym">③</span><div class="an-body"><div class="an-mis">오개념: 첫 조건만 적용하고 갱신된 x로 재판단하지 않음</div><div class="an-rem">보정(COND_BASIC): 조건 판단: 조건식의 참/거짓과 그에 따른 분기(then/else) 실행을 표로 정리</div></div></div>
+<div class="an-row"><span class="an-sym">④</span><div class="an-body"><div class="an-mis">오개념: 조건을 한 번 더 과잉 적용</div><div class="an-rem">보정(COND_BASIC): 조건 판단: 조건식의 참/거짓과 그에 따른 분기(then/else) 실행을 표로 정리</div></div></div>
+  </div>
+</article>
+<article class="card d-ct">
+  <div class="card-head">
+    <span class="num">15</span>
+    <span class="badge dom">CT·문제해결</span>
+    <span class="badge lv lv2">수준 2</span>
+    <span class="badge std">9정03-02</span>
+  </div>
+  <div class="construct">프로그램의 입력-출력에서 반복되는 규칙(패턴)을 찾아 다음 값을 예측할 수 있는가 (데이터 기반 패턴 인식)</div>
+  <pre class="stem">어떤 프로그램이 입력값에 같은 규칙을 적용해 출력한다. 규칙을 찾아 빈칸에 들어갈 출력값은?
+입력 1 → 출력 3
+입력 2 → 출력 6
+입력 3 → 출력 9
+입력 4 → 출력 (   )</pre>
+  <ul class="choices">
+    <li class="choice correct">① 12<span class="ck">✓</span></li>
+<li class="choice">② 10</li>
+<li class="choice">③ 13</li>
+<li class="choice">④ 27</li>
+  </ul>
+  <div class="analysis">
+    <div class="an-title">정답 · 오답 분석 <span class="a19">(A19 오개념→보정 연계)</span></div>
+    <div class="an-ans">정답 <b>①</b></div>
+<div class="an-row"><span class="an-sym">②</span><div class="an-body"><div class="an-mis">오개념: 규칙을 잘못 적용(임의 가감)</div><div class="an-rem">보정(PATTERN): 패턴 인식: 입력-출력/수열에서 반복되는 규칙을 찾아 다음 값을 예측</div></div></div>
+<div class="an-row"><span class="an-sym">③</span><div class="an-body"><div class="an-mis">오개념: 규칙을 잘못 적용(임의 가감)</div><div class="an-rem">보정(PATTERN): 패턴 인식: 입력-출력/수열에서 반복되는 규칙을 찾아 다음 값을 예측</div></div></div>
+<div class="an-row"><span class="an-sym">④</span><div class="an-body"><div class="an-mis">오개념: 곱의 규칙을 지수로 과잉 확대</div><div class="an-rem">보정(PATTERN): 패턴 인식: 입력-출력/수열에서 반복되는 규칙을 찾아 다음 값을 예측</div></div></div>
+  </div>
+</article>
+<article class="card d-ct">
+  <div class="card-head">
+    <span class="num">16</span>
+    <span class="badge dom">CT·문제해결</span>
+    <span class="badge lv lv3">수준 3</span>
+    <span class="badge std">9정03-04</span>
+  </div>
+  <div class="construct">조건에 맞는 대상의 개수를 세는 문제해결 절차를 구성할 수 있는가 (초기화-순회-조건-출력)</div>
+  <pre class="stem">학생들의 점수 목록에서 80점 이상인 학생이 몇 명인지 세려고 한다. 아래 단계를 올바른 순서로 배열한 것은?
+(가) 점수를 하나씩 차례대로 확인한다
+(나) 인원 수를 0으로 정해 둔다
+(다) 확인한 점수가 80점 이상이면 인원 수를 1 늘린다
+(라) 최종 인원 수를 출력한다</pre>
+  <ul class="choices">
+    <li class="choice correct">① 나-가-다-라<span class="ck">✓</span></li>
+<li class="choice">② 가-나-다-라</li>
+<li class="choice">③ 나-다-가-라</li>
+<li class="choice">④ 다-나-가-라</li>
+  </ul>
+  <div class="analysis">
+    <div class="an-title">정답 · 오답 분석 <span class="a19">(A19 오개념→보정 연계)</span></div>
+    <div class="an-ans">정답 <b>①</b></div>
+<div class="an-row"><span class="an-sym">②</span><div class="an-body"><div class="an-mis">오개념: 초기화 전에 순회를 시작(초기화 누락 위치)</div><div class="an-rem">보정(SEQ_ORDER): 절차 순서·의존성: 각 단계가 앞 단계의 결과에 의존함을 화살표로 표시하며 순서화</div></div></div>
+<div class="an-row"><span class="an-sym">③</span><div class="an-body"><div class="an-mis">오개념: 순회 전에 조건 판단을 배치</div><div class="an-rem">보정(SEQ_ORDER): 절차 순서·의존성: 각 단계가 앞 단계의 결과에 의존함을 화살표로 표시하며 순서화</div></div></div>
+<div class="an-row"><span class="an-sym">④</span><div class="an-body"><div class="an-mis">오개념: 조건 판단을 초기화보다 앞에 배치</div><div class="an-rem">보정(SEQ_ORDER): 절차 순서·의존성: 각 단계가 앞 단계의 결과에 의존함을 화살표로 표시하며 순서화</div></div></div>
+  </div>
+</article>
+<article class="card d-ct">
+  <div class="card-head">
+    <span class="num">17</span>
+    <span class="badge dom">CT·문제해결</span>
+    <span class="badge lv lv2">수준 2</span>
+    <span class="badge std">9정03-04</span>
+  </div>
+  <div class="construct">최댓값을 찾는 알고리즘의 절차를 이해하는가</div>
+  <pre class="stem">세 수 중 가장 큰 수를 찾는 순서로 알맞은 것은?
+(가) 첫 번째 수를 max로 정한다
+(나) 남은 수가 max보다 크면 max를 그 수로 바꾼다
+(다) max를 출력한다</pre>
+  <ul class="choices">
+    <li class="choice correct">① 가-나-다<span class="ck">✓</span></li>
+<li class="choice">② 나-가-다</li>
+<li class="choice">③ 다-나-가</li>
+<li class="choice">④ 가-다-나</li>
+  </ul>
+  <div class="analysis">
+    <div class="an-title">정답 · 오답 분석 <span class="a19">(A19 오개념→보정 연계)</span></div>
+    <div class="an-ans">정답 <b>①</b></div>
+<div class="an-row"><span class="an-sym">②</span><div class="an-body"><div class="an-mis">오개념: 초기화(max 설정) 전에 비교를 시작</div><div class="an-rem">보정(SEQ_ORDER): 절차 순서·의존성: 각 단계가 앞 단계의 결과에 의존함을 화살표로 표시하며 순서화</div></div></div>
+<div class="an-row"><span class="an-sym">③</span><div class="an-body"><div class="an-mis">오개념: 비교·갱신 전에 출력</div><div class="an-rem">보정(SEQ_ORDER): 절차 순서·의존성: 각 단계가 앞 단계의 결과에 의존함을 화살표로 표시하며 순서화</div></div></div>
+<div class="an-row"><span class="an-sym">④</span><div class="an-body"><div class="an-mis">오개념: 비교 전에 출력을 배치</div><div class="an-rem">보정(SEQ_ORDER): 절차 순서·의존성: 각 단계가 앞 단계의 결과에 의존함을 화살표로 표시하며 순서화</div></div></div>
+  </div>
+</article>
+<article class="card d-ct">
+  <div class="card-head">
+    <span class="num">18</span>
+    <span class="badge dom">CT·문제해결</span>
+    <span class="badge lv lv3">수준 3</span>
+    <span class="badge std">9정03-06</span>
+  </div>
+  <div class="construct">나머지가 0인 조건(나누어떨어짐)을 문제 해결에 적용할 수 있는가</div>
+  <pre class="stem">1부터 12까지의 수 중에서 12를 나누어떨어지게 하는(12를 나눈 나머지가 0인) 수를 모두 출력하려 한다. 빈칸에 알맞은 것은?
+for i from 1 to 12:
+    if 12를 i로 나눈 나머지가 (   ):
+        print i</pre>
+  <ul class="choices">
+    <li class="choice">① 1</li>
+<li class="choice correct">② 0<span class="ck">✓</span></li>
+<li class="choice">③ 12</li>
+<li class="choice">④ i</li>
+  </ul>
+  <div class="analysis">
+    <div class="an-title">정답 · 오답 분석 <span class="a19">(A19 오개념→보정 연계)</span></div>
+    <div class="an-ans">정답 <b>②</b></div>
+<div class="an-row"><span class="an-sym">①</span><div class="an-body"><div class="an-mis">오개념: 나머지 1을 약수 조건으로 오인</div><div class="an-rem">보정(MODULO): 나머지·약수: &#x27;나누어떨어짐(나머지 0)&#x27;의 의미와 약수 판정을 연결</div></div></div>
+<div class="an-row"><span class="an-sym">③</span><div class="an-body"><div class="an-mis">오개념: 나눗셈 결과/피제수를 조건으로 혼동</div><div class="an-rem">보정(MODULO): 나머지·약수: &#x27;나누어떨어짐(나머지 0)&#x27;의 의미와 약수 판정을 연결</div></div></div>
+<div class="an-row"><span class="an-sym">④</span><div class="an-body"><div class="an-mis">오개념: 변수 i를 조건값으로 혼동</div><div class="an-rem">보정(MODULO): 나머지·약수: &#x27;나누어떨어짐(나머지 0)&#x27;의 의미와 약수 판정을 연결</div></div></div>
+  </div>
+</article>
+<article class="card d-ct">
+  <div class="card-head">
+    <span class="num">19</span>
+    <span class="badge dom">CT·문제해결</span>
+    <span class="badge lv lv3">수준 3</span>
+    <span class="badge std">9정03-04</span>
+  </div>
+  <div class="construct">정렬 과정에서 값이 교환되는 중간 단계를 이해하는가 (정렬 절차)</div>
+  <pre class="stem">[8, 3, 5]를 작은 수부터 정렬하려 한다. &#x27;남은 수 중 가장 작은 수를 맨 앞의 수와 바꾸기&#x27;를 한 번 수행한 직후의 상태는?</pre>
+  <ul class="choices">
+    <li class="choice correct">① [3, 8, 5]<span class="ck">✓</span></li>
+<li class="choice">② [8, 3, 5]</li>
+<li class="choice">③ [3, 5, 8]</li>
+<li class="choice">④ [5, 3, 8]</li>
+  </ul>
+  <div class="analysis">
+    <div class="an-title">정답 · 오답 분석 <span class="a19">(A19 오개념→보정 연계)</span></div>
+    <div class="an-ans">정답 <b>①</b></div>
+<div class="an-row"><span class="an-sym">②</span><div class="an-body"><div class="an-mis">오개념: 교환이 일어나지 않았다고 오인</div><div class="an-rem">보정(SORT_PROCESS): 정렬 과정: 한 번의 비교·교환이 리스트를 어떻게 바꾸는지 단계별로 관찰</div></div></div>
+<div class="an-row"><span class="an-sym">③</span><div class="an-body"><div class="an-mis">오개념: 중간 과정을 건너뛰고 최종 정렬 결과만 선택(결과-과정 혼동)</div><div class="an-rem">보정(SORT_PROCESS): 정렬 과정: 한 번의 비교·교환이 리스트를 어떻게 바꾸는지 단계별로 관찰</div></div></div>
+<div class="an-row"><span class="an-sym">④</span><div class="an-body"><div class="an-mis">오개념: 교환 대상을 잘못 선택</div><div class="an-rem">보정(SORT_PROCESS): 정렬 과정: 한 번의 비교·교환이 리스트를 어떻게 바꾸는지 단계별로 관찰</div></div></div>
+  </div>
+</article>
+<article class="card d-algo">
+  <div class="card-head">
+    <span class="num">20</span>
+    <span class="badge dom">알고리즘 이해</span>
+    <span class="badge lv lv4">수준 4</span>
+    <span class="badge std">9정03-06</span>
+  </div>
+  <div class="construct">중첩된 반복에서 안쪽 반복이 바깥 반복마다 실행되는 흐름을 추적할 수 있는가 (중첩 반복)</div>
+  <pre class="stem">최종 출력값은?
+count ← 0
+for i from 1 to 3:
+    for j from 1 to 2:
+        count ← count + 1
+print count</pre>
+  <ul class="choices">
+    <li class="choice correct">① 6<span class="ck">✓</span></li>
+<li class="choice">② 5</li>
+<li class="choice">③ 3</li>
+<li class="choice">④ 2</li>
+  </ul>
+  <div class="analysis">
+    <div class="an-title">정답 · 오답 분석 <span class="a19">(A19 오개념→보정 연계)</span></div>
+    <div class="an-ans">정답 <b>①</b></div>
+<div class="an-row"><span class="an-sym">②</span><div class="an-body"><div class="an-mis">오개념: 중첩을 순차 실행으로 오인해 두 반복을 더함(3+2). 안쪽이 바깥마다 반복됨을 놓침</div><div class="an-rem">보정(LOOP_COUNT): 반복 횟수: 반복 구조가 실제 몇 번 실행되는지 카운터를 세며 확인</div></div></div>
+<div class="an-row"><span class="an-sym">③</span><div class="an-body"><div class="an-mis">오개념: 바깥 반복만 세고 안쪽 반복을 무시</div><div class="an-rem">보정(LOOP_COUNT): 반복 횟수: 반복 구조가 실제 몇 번 실행되는지 카운터를 세며 확인</div></div></div>
+<div class="an-row"><span class="an-sym">④</span><div class="an-body"><div class="an-mis">오개념: 안쪽 반복만 한 번 세고 바깥 반복을 무시</div><div class="an-rem">보정(LOOP_COUNT): 반복 횟수: 반복 구조가 실제 몇 번 실행되는지 카운터를 세며 확인</div></div></div>
+  </div>
+</article>
+<article class="card d-ct">
+  <div class="card-head">
+    <span class="num">21</span>
+    <span class="badge dom">CT·문제해결</span>
+    <span class="badge lv lv2">수준 2</span>
+    <span class="badge std">9정03-02</span>
+  </div>
+  <div class="construct">문제 해결에 필요한 핵심 정보만 선택하고 불필요한 정보를 제거할 수 있는가 (추상화·핵심요소 추출)</div>
+  <pre class="stem">자동판매기 프로그램은 &#x27;넣은 돈으로 음료를 사고 거스름돈을 돌려주는&#x27; 기능을 한다. 이 기능을 만드는 데 반드시 필요한 정보만 모두 고른 것은?
+ㄱ. 넣은 금액
+ㄴ. 음료 가격
+ㄷ. 자판기 색깔
+ㄹ. 산 시각
+ㅁ. 산 사람 이름</pre>
+  <ul class="choices">
+    <li class="choice correct">① ㄱ, ㄴ<span class="ck">✓</span></li>
+<li class="choice">② ㄱ, ㄴ, ㄷ</li>
+<li class="choice">③ ㄱ, ㄴ, ㄹ, ㅁ</li>
+<li class="choice">④ ㄱ, ㄴ, ㄷ, ㄹ, ㅁ</li>
+  </ul>
+  <div class="analysis">
+    <div class="an-title">정답 · 오답 분석 <span class="a19">(A19 오개념→보정 연계)</span></div>
+    <div class="an-ans">정답 <b>①</b></div>
+<div class="an-row"><span class="an-sym">②</span><div class="an-body"><div class="an-mis">오개념: 무관한 속성(색깔)을 핵심요소로 포함</div><div class="an-rem">보정(ABSTRACT): 추상화: 문제 해결에 필요한 핵심 정보만 남기고 불필요한 정보를 걸러내는 연습</div></div></div>
+<div class="an-row"><span class="an-sym">③</span><div class="an-body"><div class="an-mis">오개념: 무관한 정보(시각·이름)를 포함</div><div class="an-rem">보정(ABSTRACT): 추상화: 문제 해결에 필요한 핵심 정보만 남기고 불필요한 정보를 걸러내는 연습</div></div></div>
+<div class="an-row"><span class="an-sym">④</span><div class="an-body"><div class="an-mis">오개념: 불필요한 정보를 전혀 걸러내지 못함(과잉 포함)</div><div class="an-rem">보정(ABSTRACT): 추상화: 문제 해결에 필요한 핵심 정보만 남기고 불필요한 정보를 걸러내는 연습</div></div></div>
+  </div>
+</article>
+<article class="card d-ct">
+  <div class="card-head">
+    <span class="num">22</span>
+    <span class="badge dom">CT·문제해결</span>
+    <span class="badge lv lv3">수준 3</span>
+    <span class="badge std">9정03-01</span>
+  </div>
+  <div class="construct">큰 문제를 의존관계가 있는 하위 문제로 나누어 순서화할 수 있는가 (문제 분해·구조화)</div>
+  <pre class="stem">&#x27;우리 반에서 평균 키보다 큰 학생이 몇 명인지 구하기&#x27;를 하위 단계로 나눌 때 순서로 알맞은 것은?
+(가) 모든 키의 합을 구한다
+(나) 평균을 구한다
+(다) 각 학생의 키가 평균보다 큰지 확인하며 그 수를 센다
+(라) 센 인원 수를 출력한다</pre>
+  <ul class="choices">
+    <li class="choice correct">① 가-나-다-라<span class="ck">✓</span></li>
+<li class="choice">② 다-가-나-라</li>
+<li class="choice">③ 나-가-다-라</li>
+<li class="choice">④ 가-다-나-라</li>
+  </ul>
+  <div class="analysis">
+    <div class="an-title">정답 · 오답 분석 <span class="a19">(A19 오개념→보정 연계)</span></div>
+    <div class="an-ans">정답 <b>①</b></div>
+<div class="an-row"><span class="an-sym">②</span><div class="an-body"><div class="an-mis">오개념: 합·평균을 구하기 전에 개수부터 셈(의존성 위반)</div><div class="an-rem">보정(DECOMPOSE): 문제 분해: 큰 문제를 의존관계가 있는 하위 문제로 나누고 순서를 정하는 연습</div></div></div>
+<div class="an-row"><span class="an-sym">③</span><div class="an-body"><div class="an-mis">오개념: 합(가)을 구하기 전에 평균(나)을 계산</div><div class="an-rem">보정(DECOMPOSE): 문제 분해: 큰 문제를 의존관계가 있는 하위 문제로 나누고 순서를 정하는 연습</div></div></div>
+<div class="an-row"><span class="an-sym">④</span><div class="an-body"><div class="an-mis">오개념: 평균(나)을 구하기 전에 &#x27;평균보다 큰지&#x27;(다)를 판단</div><div class="an-rem">보정(DECOMPOSE): 문제 분해: 큰 문제를 의존관계가 있는 하위 문제로 나누고 순서를 정하는 연습</div></div></div>
+  </div>
+</article>
+<article class="card d-code">
+  <div class="card-head">
+    <span class="num">23</span>
+    <span class="badge dom">코드 표현·실행</span>
+    <span class="badge lv lv2">수준 2</span>
+    <span class="badge std">9정03-05</span>
+  </div>
+  <div class="construct">리스트에 저장된 값을 0 기반 인덱스로 참조·갱신하는 흐름을 추적할 수 있는가 (자료 구조·인덱싱)</div>
+  <pre class="stem">(리스트의 첫 번째 값을 A[0]으로 나타낸다.)
+A ← [5, 2, 8, 1]
+A[2] ← A[0] + A[3]
+실행 후 A[2]의 값은?</pre>
+  <ul class="choices">
+    <li class="choice correct">① 6<span class="ck">✓</span></li>
+<li class="choice">② 8</li>
+<li class="choice">③ 13</li>
+<li class="choice">④ 3</li>
+  </ul>
+  <div class="analysis">
+    <div class="an-title">정답 · 오답 분석 <span class="a19">(A19 오개념→보정 연계)</span></div>
+    <div class="an-ans">정답 <b>①</b></div>
+<div class="an-row"><span class="an-sym">②</span><div class="an-body"><div class="an-mis">오개념: 갱신 전 원래 A[2] 값(8)을 선택(대입 미반영)</div><div class="an-rem">보정(LIST_INDEX): 리스트 인덱싱: 인덱스로 값을 참조·갱신하는 과정을 상자-번호 그림으로 추적</div></div></div>
+<div class="an-row"><span class="an-sym">③</span><div class="an-body"><div class="an-mis">오개념: 0이 아닌 1부터 세어 A[3]을 세 번째 원소(8)로 오인(off-by-one) → 5+8</div><div class="an-rem">보정(LIST_INDEX): 리스트 인덱싱: 인덱스로 값을 참조·갱신하는 과정을 상자-번호 그림으로 추적</div></div></div>
+<div class="an-row"><span class="an-sym">④</span><div class="an-body"><div class="an-mis">오개념: 인덱스를 한 칸 밀어 다른 원소를 참조(A[1]+A[3]=2+1)</div><div class="an-rem">보정(LIST_INDEX): 리스트 인덱싱: 인덱스로 값을 참조·갱신하는 과정을 상자-번호 그림으로 추적</div></div></div>
+  </div>
+</article>
+  <p style="color:#9ca3af;font-size:12px;text-align:center;margin-top:30px;">
+    본 문서는 진단문항 JSON(2차 수정본)에서 자동 생성된 검토용 인쇄본입니다. · 각 문항의 오답 분석은 A19(오개념→보정 연계) 설계를 반영합니다.
+  </p>
+</div>
+</body></html>
